@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Desarrollo
+       window.onload = function() {
+            var formulario = document.getElementById('formulario');
+
+            formulario.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Variables para los elementos del formulario
+                const nombre = document.getElementById('nombre').value;
+                const asunto = document.getElementById('asunto').value;
+                const mensaje = document.getElementById('mensaje').value;
+
+                const regex = /^[A-Za-z\s]+$/;
+                
+
+                // Validación
+                var error = false;
+
+                if (nombre.trim() === '') {
+                    document.querySelector('.errorNombre').textContent = 'El nombre es requerido.';
+                    error = true;
+                } else {
+                    document.querySelector('.errorNombre').textContent = '';
+                }
+
+                if (asunto.trim() === '') {
+                    document.querySelector('.errorAsunto').textContent = 'El asunto es requerido.';
+                    error = true;
+                } else {
+                    document.querySelector('.errorAsunto').textContent = '';
+                }
+
+                if (mensaje.trim() === '') {
+                    document.querySelector('.errorMensaje').textContent = 'El mensaje es requerido.';
+                    error = true;
+                } else {
+                    document.querySelector('.errorMensaje').textContent = '';
+                }
+
+                // Sin errores se envia el formulario
+                if (!error) {
+                    // Mensaje de exito al enviar
+                    
+                    document.querySelector('.resultado').textContent = 'Mensaje enviado con éxito!';
+                }
+            });
+        }
+    </script>
+    
+</body>
+
+</html>
